@@ -11,7 +11,7 @@
 <p id="title" font-size="20px">SudokuMax</p>
 
 <form action="login.php" method="post">
-
+<?php include('checkUser.php') ?>
 
 
 <div class="userInfo">
