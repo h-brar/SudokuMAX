@@ -1,28 +1,133 @@
-<?php include('server.php') ?>
+<?php
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    require 'includes/db.php';
+
+    require 'includes/captcha.php';
+
+    $replymsg = '<div class="alert alert-danger" role="alert"><strong>Error!</strong> Undefined error!</div>';
+
+    $username = $_POST['inputUsername'];
+    $password = $_POST['inputPassword'];
+
+    $sql = "SELECT * FROM users WHERE username = '$username'";
+    $result = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+    if ($captcha_success->success==false) {
+        $replymsg = '<div class="alert alert-danger" role="alert"><strong>Error!</strong> Invalid captcha!</div>';
+    }
+    else if((mysqli_num_rows($result) == 1) && ($captcha_success->success==true) && password_verify($password, $row['password'])) {
+        $_SESSION['user_id'] = $username;
+        if (isset($_GET["movie"])) {
+            header("Location: http://sofe2720.veloxcloud.ca/order.php?id=".$_GET["movie"]);
+        }
+        else {
+            header("Location: http://sofe2720.veloxcloud.ca/dashboard.php");
+        }
+    }
+    else {
+        $replymsg = '<div class="alert alert-danger" role="alert"><strong>Error!</strong> Invalid username and/or password!</div>';
+    }
+}
+?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-	<title>Login to SudokuMax</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SudokuMAX - Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/heroic-features.css" rel="stylesheet">
+    <link href="css/register.css" rel="stylesheet">
+
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
+
 <body>
 
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">SudokuMAX</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register.php">Register</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="login.php">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<p id="title" font-size="20px">SudokuMax</p>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Sign In</h5>
+                    <?php
+                    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                        echo $replymsg;
+                    }
+                    ?>
+                    <form class="form-signin" action="" method="post">
+                        <div class="form-label-group">
+                            <input type="text" name="inputUsername" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                            <label for="inputUsername">Username</label>
+                        </div>
 
-<form action="login.php" method="post">
-<?php include('checkUser.php') ?>
+                        <div class="form-label-group">
+                            <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+                            <label for="inputPassword">Password</label>
+                        </div>
 
+                        <div align="center" class="g-recaptcha" data-sitekey="6LeuVH0UAAAAAOvb2yHd9wlV743BZ5V1b3FQOmPl"></div><br>
 
-<div class="userInfo">
-	Please enter your username: <br><input type="text"     name="user"><br>
+                        <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                        <a class="d-block text-center mt-2 small" href="register.php">Register</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="userInfo">
-	Please enter your password: <br><input type="password" name="pass"><br>
-</div>
-<input type="submit" value="Submit">
-</form><br>
-<p>Not yet registerd? <a href="signup.php">Sign Up!</a> 
+
+<!-- Footer -->
+<footer class="bg-dark footer">
+    <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; SudokuMAX 2018</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
