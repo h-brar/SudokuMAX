@@ -60,21 +60,15 @@ a:hover
    
 }
 
-#Column2
-{
-    width: 174px;
-    margin-left: 40px;
-    float: left;
-}
 
 
 
-td.boardCellGroupA,td.boardCellGroupB
+td.cell1,td.cell
 {
     background-color: white;
 }
 
-td.boardCellGroupA td.boardCell
+td.cell1 td.cell
 {
     width: 44px;
     height: 44px;
@@ -82,7 +76,7 @@ td.boardCellGroupA td.boardCell
     background-color: white;
 }
 
-td.boardCellGroupB td.boardCell
+td.cell2 td.cell
 {
     width: 44px;
     height: 44px;
@@ -99,7 +93,7 @@ td.boardCellGroupB td.boardCell
     color: #9886a0;
 }
 
-.staticValue,.editValue
+.staticValue,.addValue
 {
     width: 42px;
     height: 42px;
@@ -108,7 +102,7 @@ td.boardCellGroupB td.boardCell
     border: 1px solid #ffeaea;
 }
 
-.editValue:hover
+.addValue:hover
 {
     background: #eee3f7;
 }
