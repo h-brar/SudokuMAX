@@ -13,95 +13,37 @@ if ( isset( $_SESSION['user_id'] ) ) {
 }
 ?>
 
+
+
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
+  <head>
+  <meta charset="utf-8">
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <title>SudokuMAX</title>
 
-    <title>SudokuMAX - Game</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/heroic-features.css" rel="stylesheet">
-	<link href="alternategamestyle.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="gamestyle.css">
 
 </head>
-
-<body>
 <script type="text/javascript">
     function theme(cssFile, cssLinkIndex) {
+
     var oldlink = document.getElementsByTagName("link").item(cssLinkIndex);
+
     var newlink = document.createElement("link");
     newlink.setAttribute("rel", "stylesheet");
     newlink.setAttribute("type", "text/css");
     newlink.setAttribute("href", cssFile);
+
     document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
 }
 </script>
-<!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand" href="/">SudokuMAX</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <?php
-                if ( isset( $_SESSION['user_id'] ) ) {
-                    echo '
-                    <li class="nav-item">
-                        <a class="nav-link active" href="dashboard.php">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout (' . $_SESSION["user_id"] . ')</a>
-                    </li>
-                    ';
-                }
-                else {
-                    echo '
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.php">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.php">Login</a>
-                    </li>
-                    ';
-                }
-                ?>
+<body>
+<center><h1>SudokuMAX</h1><br>
 
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Page Content -->
-<div class="container">
-
-    <!-- Jumbotron Header -->
-    <header class="jumbotron my-4">
-        <h1 class="display-4">Hey there <?php echo $_SESSION['user_id']; ?>!</h1>
-        <hr>
-        <p class="lead">The best Sudoku you can find online!</p>
-    </header>
-	
-	<div>
-	<center>
-	<div id="sudokuBoard">
+ <div id="sudokuBoard">
                         <table cellspacing="0" cellpadding="0">
                             <tr>
                                 <td class="boardCellGroupA">
@@ -608,24 +550,10 @@ if ( isset( $_SESSION['user_id'] ) ) {
                     </div>
                      <a href="#" onclick="theme('gamestyle.css', 0);"> Dark Theme   </a> 
                      <a href="#" onclick="theme('alternategamestyle.css', 0);">Light Theme</a>
-                </div>
-				</center>
-	</div>
-	
-<!-- /.container -->
+                </center>
+            </body>
+            </html>
 
-<!-- Footer -->
-<footer class="footer bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; SudokuMAX 2019</p>
-    </div>
-    <!-- /.container -->
-</footer>
 
-<!-- Bootstrap core JavaScript -->
-<script src="js/jquery/jquery.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
 
-</body>
 
-</html>
