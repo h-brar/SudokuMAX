@@ -13,16 +13,19 @@ SudokuMAX can be accessed via web browser. To utilize the web app follow the ste
 1.2 How to Play:
 
 Game Rules
- For each board, fill in numbers 1-9 once for each row, column, and 3x3 region.
- No two numbers can be the same in any row, column, or 3x3 region in any direction (vertical, horizontal, diagonal).
+
+ - For each board, fill in numbers 1-9 once for each row, column, and 3x3 region.
+ - No two numbers can be the same in any row, column, or 3x3 region in any direction (vertical, horizontal, diagonal).
 
 
 1.3 Profile, Game History, Ranking
+
 User profiles allow for viewing personal game history (games played), scores and ranking relative to other players, 
 and profile information (username, password).
 
 
 1.4 Privacy Notice
+
 SudokuMAX does not share personal information such as email addresses, passwords, or identification to third parties. 
 Agreeing to SudokuMAX terms and conditions indicate compliance with storing of usernames and scores within a database,
 and publishing of selected scores and ranks within user population.
