@@ -1,4 +1,7 @@
 # SudokuMAX
+
+Demo: http://sofe2720.veloxcloud.ca
+
 Game
 
 1.1 How to sign up for SudokuMAX:
